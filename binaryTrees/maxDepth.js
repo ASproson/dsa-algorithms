@@ -19,4 +19,4 @@ root.right.right = new TreeNode(5);
 root.right.right.right = new TreeNode(6);
 
 // Perform DFS traversal
-maxDepth(root); // 4
+console.log(maxDepth(root)); // 4
