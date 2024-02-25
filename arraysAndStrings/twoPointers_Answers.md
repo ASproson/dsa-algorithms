@@ -69,3 +69,55 @@ We create `left` and `right` as pointers to two ends of the passed array. Then, 
 We then reassign `s[left]` to our temporary value, placing the previous right element over the original left element. Then we increment `left` and `right` respectively, to ensure that we progress through the entire array.
 
 Lastly, we return the modified array
+
+## squaredArray
+
+_Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order_
+
+```JavaScript
+const square = (num) => {
+  return num * num;
+};
+
+function squaredArray(nums) {
+  let left = 0;
+  let right = nums.length - 1;
+  let idx = nums.length - 1;
+
+  const sortedSquaresArray = new Array(nums.length);
+
+  while (left <= right) {
+    const leftSquare = square(nums[left]);
+    const rightSquare = square(nums[right]);
+
+    if (leftSquare >= rightSquare) {
+      sortedSquaresArray[idx] = leftSquare;
+      left++;
+    } else {
+      sortedSquaresArray[idx] = rightSquare;
+      right--;
+    }
+    idx--;
+  }
+
+  return sortedSquaresArray;
+}
+```
+
+Time complexity: O(n) as we must traverse the entire array
+
+Space complexity: O(n) as we need to create a new array that is proportional to the passed array
+
+First, because we know that we'll be squaring two numbers together, we create a helper function called `square` that will simply square the provided number and return it
+
+Then, we initialize `left` to 0 (the start of our array traversal), and then initialize `right` and `idx` to the end of the array respectively. We then create `sortedSquaresArray` as a new array that is the length of `nums`.
+
+Then, while `left <= right` (<= because we're ordering the array we might need to swap the middle value around), we store the square of `nums[left]` and `nums[right]`. We will then use these are comparators.
+
+`if leftSquare >= rightSquare` then we know that we need to place the `leftSquare` _at the end of our new array_ because it's greater than `rightSquare`. We then increment `left` to ensure it moves up the array
+
+Conversely, if `rightSquare > leftSquare` then we place `rightSquare` _at the end of the array_ and decrement `right`. This allows us to constantly put the greatest value at the end of our array.
+
+Still within the `while` loop, on every pass we decrement `idx`. We can do this because the passed array is _non-decreasing order_, which means that the array is in ascending order but may contain duplicates. This means that we know `rightSquare` must either by the smaller or larger than `leftSquare`, allowing us to maintain the sorted order
+
+Lastly we return the new array
