@@ -38,3 +38,34 @@ If `sum > target` then we know that we need to decrement `right` because the pas
 Conversely, if our `sum < target` then we know that we remove the left-most value from our sum and move _up_ the array until `left` is no `< right`.
 
 Lastly, if no pair is found we return `-1` to indicate that no pair was found
+
+## reverseString
+
+_Write a function that reverses a string array in place. s[i] is printable ascii character_
+
+```JavaScript
+function reverseString(s) {
+  let left = 0;
+  let right = s.length - 1;
+
+  while (left < right) {
+    let temp = s[right];
+    s[right] = s[left];
+    s[left] = temp;
+    right--;
+    left++;
+  }
+
+  return s;
+}
+```
+
+Time complexity: O(n) as we must traverse the entire array
+
+Space complexity: O(1) as we only store two integers and we modify the array in place
+
+We create `left` and `right` as pointers to two ends of the passed array. Then, `while left < right` we store a `temp` variable that is `s[right]`. This allows us to immediately overwrite the current `s[right]` element with the `s[left]` element, allowing us to swap their position.
+
+We then reassign `s[left]` to our temporary value, placing the previous right element over the original left element. Then we increment `left` and `right` respectively, to ensure that we progress through the entire array.
+
+Lastly, we return the modified array
