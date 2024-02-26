@@ -36,3 +36,32 @@ Time complexity: O(n) as we must traverse the entire length of the passed array
 Space complexity: O(n) as we may potentially create a set that is the full length of the passed array
 
 First we create a new `set` from the passed array. We then interate over the passed array until we reach the equal length. On each iteration we test as to whether or not the `set` has the currently iterated value. If it does not, then we have our missing number and so return
+
+## countElements
+
+_Given an integer array arr, count how many elements x there are, such that x + 1 is also in arr. If there are duplicates in arr, count them separately_
+
+```JavaScript
+function countElements(arr) {
+  let count = 0;
+  const set = new Set(arr);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (set.has(arr[i] + 1)) {
+      count++;
+    }
+  }
+
+  return count;
+}
+```
+
+Time complexity: O(n) as we must traverse the entire length of the passed array
+
+Space complexity: O(n) as we may potentially create a set that is the full length of the passed array
+
+First we initialize `count = 0` as we need to track how many elements exist that satisfiy the `x + 1` condition. We then create our set, which allows us to count the duplicates seperately
+
+We then interate over the passed array checking to see whether or not the `set.has(arr[i] + 1)`. If it does, we increment `count`
+
+Once the loop is complete we return the `count`
