@@ -38,3 +38,36 @@ Then we loop over the remainder of the passed array by initializing `right` from
 On each loop we subtract `nums[left]` from the current whilst also adding `nums[right]` to the current. This is how we _slide_ the window over the array and maintain the correct sum for `current`
 
 Lastly, we compare which value is greater with `Math.max(answer, current)` and then return the final `answer` once the loop completes
+
+## findMaxAverage
+
+_You are given an integer array nums consisting of n elements, and an integer k_
+
+_Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value_
+
+_Input nums = [1,12,-5,-6,50,3], k = 4_
+_Output 12.75000_
+_Explanation Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75_
+
+```JavaScript
+  let left = 0;
+  let current = 0;
+  for (let i = 0; i < k; i++) {
+    current += nums[i];
+  }
+
+  let answer = current;
+
+  for (let right = k; right < nums.length; right++) {
+    current += nums[right];
+    current -= nums[left];
+    answer = Math.max(answer, current);
+    left++;
+  }
+
+  return answer / k;
+```
+
+Time complexity: O(n) as we must traverse the entire array
+
+Space complexity: O(1) as only create integers
