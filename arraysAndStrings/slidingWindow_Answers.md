@@ -48,3 +48,45 @@ By updating `maxOnes` in this manner, we ensure that it always holds the maximum
 Finally, after iterating through the entire array, we return the value of `maxOnes`, which represents the maximum number of consecutive ones that can be achieved by flipping at most k zeros in the input binary array nums
 
 We `+1` to our calculation because we need to calculate the length of the window inclusive of both `right` and `left`, if we didn't `+1` we would be missing the rightmost position
+
+## longestSubstringWithoutRepeating
+
+_Given a string consisting of only lowercase English letters, find the length of the longest substring without repeating characters_
+
+```JavaScript
+function longestSubstringWithoutRepeating(s) {
+  let left = 0;
+  let maxLength = 0;
+  const charMap = {};
+
+  for (let right = 0; right < s.length; right++) {
+    const currentChar = s[right];
+    if (charMap[currentChar] !== undefined && charMap[currentChar] >= left) {
+      left = charMap[currentChar] + 1;
+    }
+    charMap[currentChar] = right;
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+
+  return maxLength;
+}
+```
+
+Time complexity: O(n) as we must traverse the entire array
+
+Space complexity: O(n) as we potentially create a map that is proportion to the passed array
+
+First, we initialize `left`, `maxLength`, and `charMap`. `left` acts as a pointer marking the start of the current substring without repeating characters, `maxLength` tracks the length of the longest substring encountered, and `charMap` stores the last index where each character appeared
+
+We iterate over the string s, incrementing right on each iteration. Within the loop:
+
+- We retrieve the current character `currentChar`
+- We check if `currentChar` exists in `charMap` and if its index is greater than or equal to `left`. If so, it means `currentChar` has been seen in the current substring, and we adjust left to the index after the last occurrence of `currentChar`
+- We update charMap with the current index of `currentChar`
+- We calculate the length of the current substring without repeating characters using 1 and update maxLength accordingly with `Math.max(maxLength, right - left + 1)`.
+
+The +1 in `right - left + 1` is crucial because it ensures that we include both the left and right pointers when calculating the length of the current substring. Without this adjustment, we would miss counting the character at the right pointer
+
+By updating `maxLength` with the maximum length encountered so far, we ensure that it always holds the length of the longest substring without repeating characters seen up to the current index right
+
+Finally, after iterating through the entire string, we return `maxLength`, representing the length of the longest substring without repeating characters
