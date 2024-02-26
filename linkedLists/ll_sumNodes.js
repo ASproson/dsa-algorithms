@@ -1,13 +1,6 @@
 // Given a linked list, return the sum of all the nodes
 
-function sumNodes(head) {
-  let ans = 0;
-  while (head) {
-    ans += head.val;
-    head = head.next;
-  }
-  return ans;
-}
+function sumNodes(head) {}
 
 class ListNode {
   constructor(val) {
