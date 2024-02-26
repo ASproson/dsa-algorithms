@@ -48,3 +48,34 @@ Space complexity: O(1) as we only store references to the passed array
 First, we initialize `fast` and `slow` to the passed head of the linked list. Then `while fast && fast.next` we iterate, incrementing the `slow` node by 1 each time, but the `fast` node by 2 each time. This allows the two variables to traverse the linked list at two different speeds, this means that when `fast.next` is null, we know we have reached the end of the list and as such terminate the loop
 
 Lastly, we return `slow` as that is pointing to the middle node of the passed list
+
+## hasCycle
+
+_You are given a singly linked list that may or may not have a cycle. Write a function hasCycle(head) that returns true if the linked list has a cycle, or false otherwise_
+
+```JavaScript
+function hasCycle(head) {
+  let slow = head;
+  let fast = head;
+
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) {
+      return true; // Cycle detected
+    }
+  }
+
+  return false; // No cycle detected
+}
+```
+
+Time complexity: O(n) as traverse the entire array
+
+Space complexity: O(1) as we only store references to the passed array
+
+We first initialize `fast` and `slow` to the currently passed linked list. Then, `while fast && fast.next` we iterate until `fast.next === null`. We update `slow` to the next node and update `fast` to the next, next node. This allows us to move `fast` foward by two nodes, whilst `slow` only moves one node at a time
+
+If, at any point, `slow === fast` then we know that we have found a cycle because we `fast` has looped over the entire list and has begun to _lap_ over `slow`, so we return true
+
+If `fast.next` ever becomes null, we know that we do not have a cycle and can return false
