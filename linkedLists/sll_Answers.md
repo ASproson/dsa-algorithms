@@ -79,3 +79,34 @@ We first initialize `fast` and `slow` to the currently passed linked list. Then,
 If, at any point, `slow === fast` then we know that we have found a cycle because we `fast` has looped over the entire list and has begun to _lap_ over `slow`, so we return true
 
 If `fast.next` ever becomes null, we know that we do not have a cycle and can return false
+
+## deleteDuplicates
+
+_Given an ordered linked list, remove any duplicates_
+
+```JavaScript
+function deleteDuplicates(head) {
+  let current = head;
+  while (current && current.next) {
+    let nextNode = current.next;
+    if (current.val === nextNode.val) {
+      current.next = nextNode.next;
+    } else {
+      current = current.next;
+    }
+  }
+  return head;
+}
+```
+
+Time complexity: O(n) as traverse the entire array
+
+Space complexity: O(1) as we only store references to the passed array
+
+First we assign `current` to head. `while current && current.next` we iterate through the list until `current.next` is null. We store the `nextNode` as the next value in the node
+
+This allows us to compare the `current.val` to `nextNode.val`. If they match, then we know that there are duplicates so we reassign `current.next` to `nextNode.next`, allowing us to _skip_ over the next node in the list. This _orphans_ the node, removing it from the list
+
+If we do not find a match, then we reassign `current` to be `current.next` to continue the loop
+
+Lastly we return `head` as all of our operations that occurred on `current` were done via memory reference, meaning that all changes on `current` impact our provided `head`
