@@ -14,7 +14,7 @@ function sumNodes(head) {
 
 ```
 
-Time complexity: O(n) as traverse the entire array
+Time complexity: O(n) as we traverse the entire array
 
 Space complexity: O(1) as we only store references to the passed array
 
@@ -41,7 +41,7 @@ function findMiddle(head) {
 }
 ```
 
-Time complexity: O(n) as traverse the entire array
+Time complexity: O(n) as we traverse the entire array
 
 Space complexity: O(1) as we only store references to the passed array
 
@@ -70,7 +70,7 @@ function hasCycle(head) {
 }
 ```
 
-Time complexity: O(n) as traverse the entire array
+Time complexity: O(n) as we traverse the entire array
 
 Space complexity: O(1) as we only store references to the passed array
 
@@ -99,7 +99,7 @@ function deleteDuplicates(head) {
 }
 ```
 
-Time complexity: O(n) as traverse the entire array
+Time complexity: O(n) as we traverse the entire array
 
 Space complexity: O(1) as we only store references to the passed array
 
