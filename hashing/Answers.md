@@ -8,9 +8,9 @@ function isPangram(s) {
 }
 ```
 
-Time complexity: O(1)
+Time complexity: O(n), in the worst case scenario we must create a new unique and the passed string is all unique characters
 
-Space complexity: O(n)
+Space complexity: O(n) as we possibly create a set that is the full length of the passed string
 
 Here we create a new `Set` with the passed string. A set is a collection of _unique_ values, and a pangram is a sentence where every letter of the english alphabet appears at least once.
 
@@ -30,5 +30,9 @@ function missingNumber(nums) {
   }
 }
 ```
+
+Time complexity: O(n) as we must traverse the entire length of the passed array
+
+Space complexity: O(n) as we may potentially create a set that is the full length of the passed array
 
 First we create a new `set` from the passed array. We then interate over the passed array until we reach the equal length. On each iteration we test as to whether or not the `set` has the currently iterated value. If it does not, then we have our missing number and so return
