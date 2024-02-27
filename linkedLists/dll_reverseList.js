@@ -3,25 +3,7 @@
 // Input: 1 <-> 2 <-> 3 <-> 4 <-> 5
 // Output: 5 <-> 4 <-> 3 <-> 2 <-> 1
 
-function reverseDoublyLinkedList(head) {
-  let current = head;
-  let temp = null;
-
-  // Swap next and prev pointers for all nodes of the doubly linked list
-  while (current !== null) {
-    temp = current.prev;
-    current.prev = current.next;
-    current.next = temp;
-    current = current.prev; // Move to the next node
-  }
-
-  // Before changing the head, check for empty list or list with only one node
-  if (temp !== null) {
-    head = temp.prev;
-  }
-
-  return head;
-}
+function reverseDoublyLinkedList(head) {}
 
 // Do not edit code below
 
@@ -58,8 +40,8 @@ function printLinkedList(head) {
   console.log(values.join(" <-> "));
 }
 
-console.log("\nOriginal Doubly Linked List:"); // 1 <-> 2 <-> 3 <-> 4 <-> 5
-printLinkedList(head);
+console.log("\nOriginal Doubly Linked List:");
+printLinkedList(head); // 1 <-> 2 <-> 3 <-> 4 <-> 5
 
 console.log("\nReversed Doubly Linked List:");
 printLinkedList(reverseDoublyLinkedList(head)); // 5 <-> 4 <-> 3 <-> 2 <-> 1
