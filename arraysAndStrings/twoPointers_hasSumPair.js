@@ -1,4 +1,4 @@
-// Given a sorted array and a target, return the indices of the two numbers. If there is no pair, return -1
+// Given a sorted array and a target, return the indices of the two numbers that sum to the target. If there is no pair, return -1
 
 function hasSumPair(nums, target) {}
 
