@@ -39,3 +39,53 @@ Then we assign `current.prev` to `current.next` and `current.next` to `current.p
 To end the current iteration we set `current` to `current.prev`, which allows us to move to the next node in the list
 
 Lastly, we check for an empty list or a list with only one node then we return the head
+
+## insertNodeAtPosition
+
+_You are given a doubly linked list and a position (0-based index). Write a function to insert a new node with a given value at the specified position in the list. If the position is invalid (negative or greater than the length of the list), the function should not modify the list_
+
+```JavaScript
+function insertNodeAtPosition(head, position, value) {
+  // Check if position is invalid
+  if (position < 0) {
+    console.log("Invalid position");
+    return head;
+  }
+
+  let newNode = new Node(value);
+
+  // If position is 0, insert at the beginning
+  if (position === 0) {
+    newNode.next = head;
+    if (head !== null) {
+      head.prev = newNode;
+    }
+    return newNode;
+  }
+
+  let current = head;
+  let count = 0;
+
+  // Traverse the list to find the node at position - 1
+  while (current !== null && count < position - 1) {
+    current = current.next;
+    count++;
+  }
+
+  // If position is greater than the length of the list, do nothing
+  if (current === null) {
+    console.log("Invalid position");
+    return head;
+  }
+
+  // Insert the new node after the current node
+  newNode.next = current.next;
+  newNode.prev = current;
+  if (current.next !== null) {
+    current.next.prev = newNode;
+  }
+  current.next = newNode;
+
+  return head;
+}
+```
