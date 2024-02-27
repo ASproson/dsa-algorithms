@@ -1,3 +1,5 @@
+// Given the root of a binary tree, find the length of the longest path from the root to a leaf
+
 function maxDepth(root) {}
 
 // Example binary tree node structure
